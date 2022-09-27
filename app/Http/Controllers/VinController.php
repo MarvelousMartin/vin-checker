@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Sunrise\Vin\Vin;
@@ -11,12 +12,16 @@ class VinController extends Controller
 {
     public function index(): View
     {
+        return view('home', ['owners' => DB::table('owners')->get()]);
+    }
+
+    public function newItem() {
         return view('new');
     }
 
     public function validate_vin(Request $request)
     {
-        if ($request->get('nocheck') !== 'on') {
+        if ($request->get('checkVin') == 'on') {
             try {
                 $request->validate([
                     'vin' => 'required|size:17',
@@ -27,16 +32,46 @@ class VinController extends Controller
         }
         try {
             $vin = new Vin($request->get('vin'));
-        }
-        catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         }
 
-        return view('temp', [
+        return view('confirm', [
+            'name' => $request->get('name'),
             'vin' => $vin->getVin(),
-            'year' => $vin->getModelYear(),
-            'region' => $vin->getRegion(),
             'manufacturer' => $vin->getManufacturer(),
+            'model' => $request->get('model'),
+            'engine' => $request->get('engine'),
+            'year' => $vin->getModelYear(),
+            'richtext' => $request->get('richtext'),
+            'checkVin' => $request->get('checkVin') == 'on',
+        ]);
+    }
+
+    public function sendToDb(Request $request) {
+        if (DB::table('owners')->where('vin', $request->get('vin'))->exists()) {
+            return response()->json(['error' => 'This VIN already exists in the database'], 422);
+        }
+        DB::table('owners')->insert([
+            'name' => $request->get('name'),
+            'vin' => $request->get('vin'),
+            'manufacturer' => $request->get('manufacturer'),
+            'model' => $request->get('model'),
+            'engine' => $request->get('engine'),
+            'year' => $request->get('year'),
+            'note' => $request->get('richtext'),
+            'checkVin' => $request->get('checkVin'),
+        ]);
+
+        return redirect('list', 302, [
+            'name' => $request->get('name'),
+            'model' => $request->get('model'),
+            'engine' => $request->get('engine'),
+            'richtext' => $request->get('richtext'),
+            'vin' => $request->get('vin'),
+            'year' => $request->get('year'),
+            'region' => $request->get('region'),
+            'manufacturer' => $request->get('manufacturer'),
         ]);
     }
 }

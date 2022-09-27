@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VinController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,11 @@ use App\Http\Controllers\VinController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Add Token verification middleware to '/' */
-Route::redirect('/', '/new');
-Route::any('/new', [VinController::class, 'index']);
-Route::any('/fetch', [VinController::class, 'validate_vin'])->name('fetch');
+
+Route::any('/', [VinController::class, 'index'])->middleware('token');
+Route::any('/new', [VinController::class, 'newItem']);
+Route::any('/confirm', [VinController::class, 'validate_vin']);
+Route::any('/fetch', [VinController::class, 'sendToDb']);
+Route::any('/list', function () {
+    return view('list', ['owners' => \Illuminate\Support\Facades\DB::table('owners')->get()]);
+})->name('list');
