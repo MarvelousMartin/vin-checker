@@ -24,25 +24,35 @@ class VinController extends Controller
         if ($request->get('checkVin') == 'on') {
             try {
                 $request->validate([
-                    'vin' => 'required|size:17',
+                    'vin' => 'size:17',
                 ]);
             } catch (ValidationException $e) {
                 return response()->json(['error' => $e->validator->errors()->all()], 422);
             }
-        }
-        try {
-            $vin = new Vin($request->get('vin'));
-        } catch (\InvalidArgumentException $e) {
-            return response()->json(['error' => $e->getMessage()], 422);
+            try {
+                $vin = new Vin($request->get('vin'));
+                return view('confirm', [
+                    'name' => $request->get('name'),
+                    'vin' => $vin->getVin(),
+                    'manufacturer' => $vin->getManufacturer(),
+                    'model' => $request->get('model'),
+                    'engine' => $request->get('engine'),
+                    'year' => $vin->getModelYear(),
+                    'richtext' => $request->get('richtext'),
+                    'checkVin' => $request->get('checkVin') == 'on',
+                ]);
+            } catch (\InvalidArgumentException $e) {
+                return response()->json(['error' => $e->getMessage()], 422);
+            }
         }
 
         return view('confirm', [
             'name' => $request->get('name'),
-            'vin' => $vin->getVin(),
-            'manufacturer' => $vin->getManufacturer(),
+            'vin' => $request->get('vin'),
+            'manufacturer' => '',
             'model' => $request->get('model'),
             'engine' => $request->get('engine'),
-            'year' => $vin->getModelYear(),
+            'year' => [''],
             'richtext' => $request->get('richtext'),
             'checkVin' => $request->get('checkVin') == 'on',
         ]);
