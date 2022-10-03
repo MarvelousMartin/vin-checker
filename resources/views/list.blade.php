@@ -16,6 +16,11 @@ $counter = 1;
     <img src="https://c.tenor.com/dG_tr_lmYHkAAAAC/looking-around.gif" class="w-1/2 mx-auto mt-3" alt="">
 @else
 <div id="accordion-collapse" data-accordion="collapse" class="container mx-auto">
+    <a href="/?token=@php echo env('TOKEN')@endphp" class="flex my-2">
+        <button type="button" class="w-1/6 mx-auto text-black bg-yellow-500 hover:bg-yellow-400 font-medium rounded-xl text-sm px-5 py-2.5 text-center mb-2">
+            Domů <i class="fa-solid fa-home"></i>
+        </button>
+    </a>
     @foreach($owners as $owner)
             <h2 id="accordion-collapse-heading-{{$counter}}">
                 <button type="button" class="flex items-center justify-between w-full p-5 my-2 font-medium text-left rounded-xl bg-gray-900 text-white" data-accordion-target="#accordion-collapse-body-{{$counter}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$counter}}">
