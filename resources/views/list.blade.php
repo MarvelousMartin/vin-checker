@@ -17,13 +17,13 @@ $counter = 1;
 @else
 <div id="accordion-collapse" data-accordion="collapse" class="container mx-auto">
     <a href="/?token=@php echo env('TOKEN')@endphp" class="flex my-2">
-        <button type="button" class="w-1/6 mx-auto text-black bg-yellow-500 hover:bg-yellow-400 font-medium rounded-xl text-sm px-5 py-2.5 text-center mb-2">
+        <button type="button" class="w-4/5 mx-auto text-black bg-yellow-500 hover:bg-yellow-400 font-medium rounded-xl text-sm px-5 py-2.5 text-center mb-2">
             Domů <i class="fa-solid fa-home"></i>
         </button>
     </a>
     @foreach($owners as $owner)
             <h2 id="accordion-collapse-heading-{{$counter}}">
-                <button type="button" class="flex items-center justify-between w-full p-5 my-2 font-medium text-left rounded-xl bg-gray-900 text-white" data-accordion-target="#accordion-collapse-body-{{$counter}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$counter}}">
+                <button type="button" class="flex items-center justify-between w-11/12 mx-auto p-5 my-2 font-medium text-left rounded-xl bg-gray-900 text-white" data-accordion-target="#accordion-collapse-body-{{$counter}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$counter}}">
                     <span>{{ $owner->name }}</span>
                     <svg data-accordion-icon="" class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
@@ -40,6 +40,11 @@ $counter = 1;
                     <p class="mb-2 text-white">Poznámky:<br> <span class="font-bold">{{ $owner->note }}</span></p>
                     <br />
                     <p class="mb-2 text-white">Zkontrolovaný VIN: <span class="font-bold">@php echo $owner->checkVin ? 'ANO' : 'NE'@endphp</span> </p>
+                    <p class="text-right">
+                        <button type="button" onclick="" class="text-white bg-green-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-phone"></i></button>
+                        <button type="button" onclick="" class="text-white bg-sky-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-pencil"></i></button>
+                        <button type="button" onclick="" class="text-white bg-red-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-trash-can"></i></button>
+                    </p>
                 </div>
             </div>
         @php

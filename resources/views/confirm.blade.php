@@ -28,6 +28,12 @@
             <p class="mb-2 text-white">Poznámky:<br> <span class="font-bold">{{$note}}</span></p>
         </div>
     </div>
-    <a href="/fetch?name={{$name}}&vin={{$vin}}&manufacturer={{$manufacturer}}&model={{$model}}&engine={{$engine}}&year={{ implode(",", $year) }}&note={{$note}}&checkVin={{$checkVin}}"><button class="block w-3/5 mx-auto my-5 text-white bg-green-900 font-bold rounded-lg text-sm px-5 py-2.5 text-center">Vše OK, přidat do seznamu</button></a>
+    <a href="/fetch?name={{$name}}&vin={{$vin}}&manufacturer={{$manufacturer}}&model={{$model}}&engine={{$engine}}&year={{ implode(",", $year) }}&note={{$note}}&checkVin={{$checkVin}}"><button class="block w-4/5 mx-auto my-5 text-white bg-green-900 font-bold rounded-lg text-sm px-5 py-2.5 text-center">Vše OK, přidat do seznamu</button></a>
+    <button onclick="takeMeBack()" class="block w-4/5 mx-auto my-5 text-white bg-red-900 font-bold rounded-lg text-sm px-5 py-2.5 text-center">Zpět</button>
+    <script>
+        function takeMeBack() {
+            window.history.back();
+        }
+    </script>
 </div>
 </body>
