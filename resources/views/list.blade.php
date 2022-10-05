@@ -41,9 +41,9 @@ $counter = 1;
                     <br />
                     <p class="mb-2 text-white">Zkontrolovaný VIN: <span class="font-bold">@php echo $owner->checkVin ? 'ANO' : 'NE'@endphp</span> </p>
                     <p class="text-right">
-                        <button type="button" onclick="" class="text-white bg-green-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-phone"></i></button>
-                        <button type="button" onclick="" class="text-white bg-sky-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-pencil"></i></button>
-                        <button type="button" onclick="" class="text-white bg-red-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-trash-can"></i></button>
+                        <button type="button" onclick="" class="text-white bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-phone"></i></button>
+                        <button type="button" onclick="" class="text-white bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-pencil"></i></button>
+                        <button type="button" onclick="" class="text-white bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-trash-can"></i></button>
                     </p>
                 </div>
             </div>
