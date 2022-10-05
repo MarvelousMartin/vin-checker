@@ -28,8 +28,8 @@
             <input type="text" id="engine" name="engine" class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
         </div>
         <div class="mb-6">
-            <label for="richtext" class="block mb-2 text-sm font-medium text-gray-900">Poznámky</label>
-            <textarea id="richtext" name="richtext" rows="6" class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"></textarea>
+            <label for="note" class="block mb-2 text-sm font-medium text-gray-900">Poznámky</label>
+            <textarea id="note" name="note" rows="6" class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"></textarea>
         </div>
         <div class="flex items-center h-5">
             <input id="checkVin" type="checkbox" name="checkVin" class="w-4 h-4 bg-gray-50 rounded border border-gray-300" checked>

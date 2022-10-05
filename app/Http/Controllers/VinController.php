@@ -38,14 +38,13 @@ class VinController extends Controller
                     'model' => $request->get('model'),
                     'engine' => $request->get('engine'),
                     'year' => $vin->getModelYear(),
-                    'richtext' => $request->get('richtext'),
+                    'note' => $request->get('note'),
                     'checkVin' => $request->get('checkVin') == 'on',
                 ]);
             } catch (\InvalidArgumentException $e) {
                 return response()->json(['error' => $e->getMessage()], 422);
             }
         }
-
         return view('confirm', [
             'name' => $request->get('name'),
             'vin' => $request->get('vin'),
@@ -53,7 +52,7 @@ class VinController extends Controller
             'model' => $request->get('model'),
             'engine' => $request->get('engine'),
             'year' => [''],
-            'richtext' => $request->get('richtext'),
+            'note' => $request->get('note'),
             'checkVin' => $request->get('checkVin') == 'on',
         ]);
     }
@@ -69,7 +68,7 @@ class VinController extends Controller
             'model' => $request->get('model'),
             'engine' => $request->get('engine'),
             'year' => $request->get('year'),
-            'note' => $request->get('richtext'),
+            'note' => $request->get('note'),
             'checkVin' => $request->get('checkVin'),
         ]);
 

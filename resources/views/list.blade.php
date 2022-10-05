@@ -36,7 +36,8 @@ $counter = 1;
                     <p class="mb-2 text-white">Značka auta: <span class="font-bold">{{ $owner->manufacturer }}</span></p>
                     <p class="mb-2 text-white">Model: <span class="font-bold">{{$owner->model}}</span></p>
                     <p class="mb-2 text-white">Rok výroby: {{ $owner->year }} </p>
-                    <p class="mb-2 text-white">Poznámky:<br> <span class="font-bold">{{$owner->note}}</span></p>
+                    <p class="mb-2 text-white">Typ motoru: <span class="font-bold">{{ $owner->engine }}</span> </p>
+                    <p class="mb-2 text-white">Poznámky:<br> <span class="font-bold">{{ $owner->note }}</span></p>
                     <br />
                     <p class="mb-2 text-white">Zkontrolovaný VIN: <span class="font-bold">@php echo $owner->checkVin ? 'ANO' : 'NE'@endphp</span> </p>
                 </div>

@@ -25,9 +25,9 @@
             <p class="mb-2 text-white">Model: <span class="font-bold">{{$model}}</span></p>
             <p class="mb-2 text-white">Motor: <span class="font-bold">{{$engine}}</span></p>
             <p class="mb-2 text-white">Rok výroby: {{ implode(",", $year) }} </p>
-            <p class="mb-2 text-white">Poznámky:<br> <span class="font-bold">{{$richtext}}</span></p>
+            <p class="mb-2 text-white">Poznámky:<br> <span class="font-bold">{{$note}}</span></p>
         </div>
     </div>
-    <a href="/fetch?name={{$name}}&vin={{$vin}}&manufacturer={{$manufacturer}}&model={{$model}}&engine={{$engine}}&year={{ implode(",", $year) }}&note={{$richtext}}&checkVin={{$checkVin}}"><button class="block w-3/5 mx-auto my-5 text-white bg-green-900 font-bold rounded-lg text-sm px-5 py-2.5 text-center">Vše OK, přidat do seznamu</button></a>
+    <a href="/fetch?name={{$name}}&vin={{$vin}}&manufacturer={{$manufacturer}}&model={{$model}}&engine={{$engine}}&year={{ implode(",", $year) }}&note={{$note}}&checkVin={{$checkVin}}"><button class="block w-3/5 mx-auto my-5 text-white bg-green-900 font-bold rounded-lg text-sm px-5 py-2.5 text-center">Vše OK, přidat do seznamu</button></a>
 </div>
 </body>
