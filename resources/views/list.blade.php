@@ -28,8 +28,8 @@ $counter = 1;
                     <svg data-accordion-icon="" class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
             </h2>
-            <div id="accordion-collapse-body-{{$counter}}" aria-labelledby="accordion-collapse-heading-{{$counter}}" class="hidden">
-                <div class="p-5 font-light border border-b-0 border-gray-200 bg-gray-900">
+            <div id="accordion-collapse-body-{{$counter}}" aria-labelledby="accordion-collapse-heading-{{$counter}}" class="w-11/12 mx-auto hidden">
+                <div class="p-3 font-light border border-b-0 border-gray-200 bg-gray-900">
                     <div class="inline-flex">
                         <p class="mb-2 text-white">Vin: <span id="vinToCopy" class="font-bold">{{ $owner->vin }}</span></p> <button type="button" onclick="CopyMe('{{ $owner->vin }}')" class="text-white bg-yellow-600 font-medium rounded-lg text-sm px-3 py-1 ml-3 mb-2"><i class="fa-solid fa-copy"></i></button>
                     </div>
@@ -41,9 +41,8 @@ $counter = 1;
                     <br />
                     <p class="mb-2 text-white">Zkontrolovaný VIN: <span class="font-bold">@php echo $owner->checkVin ? 'ANO' : 'NE'@endphp</span> </p>
                     <p class="text-right">
-                        <button type="button" onclick="" class="text-white bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-phone"></i></button>
-                        <button type="button" onclick="" class="text-white bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-pencil"></i></button>
-                        <button type="button" onclick="" class="text-white bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-trash-can"></i></button>
+                        <a href="/edit?name={{$owner->name}}&vin={{$owner->vin}}&manufacturer={{$owner->manufacturer}}&model={{$owner->model}}&engine={{$owner->engine}}&year={{$owner->year}}&note={{$owner->note}}"><button type="button" onclick="" class="text-white bg-sky-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-pencil"></i></button></a>
+                        <a href="/drop/{{$owner->vin}}"><button type="button" class="text-white bg-red-600 font-medium rounded-lg text-sm px-4 py-2 ml-3"><i class="fa-solid fa-trash-can"></i></button></a>
                     </p>
                 </div>
             </div>

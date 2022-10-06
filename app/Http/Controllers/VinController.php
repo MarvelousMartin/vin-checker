@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -26,11 +27,15 @@ class VinController extends Controller
                 $request->validate([
                     'vin' => 'size:17',
                 ]);
-            } catch (ValidationException $e) {
+            } catch (\InvalidArgumentException $e) {
                 return response()->json(['error' => $e->validator->errors()->all()], 422);
             }
             try {
-                $vin = new Vin($request->get('vin'));
+                try {
+                    $vin = new Vin($request->get('vin'));
+                } catch (\Exception $e) {
+                    return response()->json(['error' => $e->getMessage()], 422);
+                }
                 return view('confirm', [
                     'name' => $request->get('name'),
                     'vin' => $vin->getVin(),
@@ -82,5 +87,34 @@ class VinController extends Controller
             'region' => $request->get('region'),
             'manufacturer' => $request->get('manufacturer'),
         ]);
+    }
+
+    public function removeFromDb(string $vin) {
+        DB::table('owners')->where(['vin' => $vin])->delete();
+        return back();
+    }
+
+    public function showEditPage(Request $request) {
+        return view('editItem', [
+            'name' => $request->get('name'),
+            'vin' => $request->get('vin'),
+            'manufacturer' => $request->get('manufacturer'),
+            'model' => $request->get('model'),
+            'engine' => $request->get('engine'),
+            'year' => $request->get('year'),
+            'note' => $request->get('note')
+        ]);
+    }
+
+    public function updateDatabaseItem(Request $request) {
+        DB::table('owners')->where(['vin' => $request->get('vin')])->update([
+            'name' => $request->get('name'),
+            'vin' => $request->get('vin'),
+            'manufacturer' => $request->get('manufacturer'),
+            'model' => $request->get('model'),
+            'engine' => $request->get('engine'),
+            'year' => $request->get('year'),
+            'note' => $request->get('note')]);
+        return redirect()->route('list');
     }
 }

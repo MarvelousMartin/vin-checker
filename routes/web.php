@@ -22,3 +22,6 @@ Route::any('/fetch', [VinController::class, 'sendToDb']);
 Route::any('/list', function () {
     return view('list', ['owners' => \Illuminate\Support\Facades\DB::table('owners')->get()]);
 })->name('list');
+Route::any('/drop/{vin}', [VinController::class, 'removeFromDb']);
+Route::any('/edit', [VinController::class, 'showEditPage']);
+Route::any('/update', [VinController::class, 'updateDatabaseItem']);
